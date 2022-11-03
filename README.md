@@ -14,5 +14,6 @@
 - docker-compose up -d
 
 ## Symfony 
+- symfony doctrine:database:create
 - symfony console d:f:l
 - symfony serve
