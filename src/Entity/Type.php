@@ -32,4 +32,5 @@ class Type
 
         return $this;
     }
+
 }
