@@ -10,12 +10,12 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
+                <th>Titre</th>
                 <th>Description</th>
-                <th>Accomplished</th>
-                <th>Priority</th>
-                <th>Tags</th>
-                <th>actions</th>
+                <th>Accompli</th>
+                <th>Priorité</th>
+                <th>Tag(s)</th>
+                <th></th>
 
             </tr>
         </thead>
@@ -25,14 +25,19 @@
                 <td>{{ task.id }}</td>
                 <td>{{ task.title }}</td>
                 <td>{{ task.description }}</td>
-                <td>{{ task.Accomplished ? 'Yes' : 'No' }}</td>
+                <td>{{ task.Accomplished ? '<p class="btn btn-success">Oui<p>' : '<p class="btn btn-danger">Non<p>' }}</td>
                 <td>{{ task.priority }}</td>
-                <td>#TAGS#</td>
                 <td>
-                    <button type="button" class="btn btn-outline-primary">
-                    <a href="{{ path('app_task_show', {'id': task.id}) }}">Voir la tâche</a>
+                    {% for type in task.types %}
+                        <button type="button" class="btn btn-outline-primary">#{{ type.type }}</button>
+                    {% endfor %}
+                </td>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-outline-dark">
+                    <a href="{{ path('app_task_show', {'id': task.id}) }}">Détails</a>
                     </button>
-                    <button type="button" class="btn btn-outline-primary">
+                    <button type="button" class="btn btn-outline-dark">
                     <a href="{{ path('app_task_edit', {'id': task.id}) }}">Modifier</a>
                     </button>
                 </td>
@@ -44,8 +49,8 @@
         {% endfor %}
         </tbody>
     </table>
-
-
-    <a href="{{ path('app_task_new') }}">Create new</a>
+        <button type="button" class="btn btn-dark">
+              <a href="{{ path('app_task_new') }}">Créer une nouvelle tâche</a>
+        </button>
     </div>
 {% endblock %}

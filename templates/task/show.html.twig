@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="container">
-    <h1>{{ task.title }}</h1>
+    <h2>{{ task.title }}</h2>
 
     <table class="table">
         <tbody>
@@ -22,19 +22,29 @@
             </tr>
             <tr>
                 <th>Accomplished</th>
-                <td>{{ task.Accomplished ? 'Yes' : 'No' }}</td>
+                <td>{{ task.Accomplished ? '<p class="btn btn-success">Oui<p>' : '<p class="btn btn-danger">Non<p>' }}</td>
             </tr>
             <tr>
                 <th>Priority</th>
                 <td>{{ task.priority }}</td>
             </tr>
+            <tr>
+                <th>Tag(s)</th>
+                <td>
+                {% for type in task.types %}
+                    <button type="button" class="btn btn-outline-primary">#{{ type.type }}</button>
+
+                {% endfor %}
+                </td>
+            </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('app_task_index') }}">back to list</a>
-
-    <a href="{{ path('app_task_edit', {'id': task.id}) }}">edit</a>
-
+        <button type="button" class="btn btn-outline-primary">
+    <a href="{{ path('app_task_index') }}">Retour à la liste</a>
+        </button>
+        <button type="button" class="btn btn-outline-primary">
+    <a href="{{ path('app_task_edit', {'id': task.id}) }}">Modifier</a>
+        </button>
     {{ include('task/_delete_form.html.twig') }}
     </div>
 {% endblock %}

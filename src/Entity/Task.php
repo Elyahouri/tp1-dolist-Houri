@@ -25,8 +25,8 @@ class Task
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[Assert\NotBlank]
-    #[ORM\Column]
+
+    #[ORM\Column(nullable: true)]
     private ?bool $Accomplished = null;
 
     #[Assert\NotBlank]

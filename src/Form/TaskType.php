@@ -21,7 +21,9 @@ class TaskType extends AbstractType
         $builder
             ->add('title',TextType::class)
             ->add('description',TextareaType::class)
-            ->add('Accomplished',CheckboxType::class)
+            ->add('Accomplished',CheckboxType::class,[
+                'required' => false
+            ])
             ->add('priority',IntegerType::class)
             ->add('Types',EntityType::class,[
                 'class'=>Type::class,
